@@ -3,7 +3,7 @@
 #include<math.h>
 
 #define ROW 3
-#define e 10.0e-3
+#define e 10.0e-6
 
 int main()
 {
@@ -18,9 +18,9 @@ int main()
 
     for(i=0;i<ROW;i++){
         for(j=0;j<ROW;j++){
-            if(i!=j)sum+=A[i][j];
+            if(i!=j)sum+=fabs(A[i][j]);
         }
-        if(A[i][i]<=sum){
+        if(fabs(A[i][i])<=sum){
             printf("Solution may not exist!\n");
             exit(1);
         }
@@ -66,7 +66,8 @@ int main()
         }
         printf("%d\t%10.2lf\t%10.2lf\t%10.2lf\n",itr,x1[0][0],x1[1][0],x1[2][0]);
 
-        if(sqrt(pow(x1[0][0]-x0[0][0],2) + pow(x1[1][0]-x0[1][0],2) + pow(x1[2][0]-x0[2][0],2)) / sqrt(pow(x1[0][0],2) + pow(x1[1][0],2) + pow(x1[2][0],2) ) < e)
+        /*if(sqrt(pow(x1[0][0]-x0[0][0],2) + pow(x1[1][0]-x0[1][0],2) + pow(x1[2][0]-x0[2][0],2)) / sqrt(pow(x1[0][0],2) + pow(x1[1][0],2) + pow(x1[2][0],2) ) < e)*/
+        if(fabs(x1[0][0]-x0[0][0])<e && fabs(x1[1][0]-x0[1][0])<e && fabs(x1[2][0]-x0[2][0])<e)
         {
             break;
         }
